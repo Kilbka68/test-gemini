@@ -1,0 +1,33 @@
+# Environments
+.env
+.venv
+env/
+venv/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.Python
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.vscode/
+
+# Django
+*.log
+*.sqlite3
+media/
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.bak
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
