@@ -77,7 +77,6 @@ body {
 .btn-equals {
     background-color: #007bff;
     color: white;
-    grid-column: span 2; /* Make equals button wider */
 }
 
 .btn-equals:hover {

@@ -5,14 +5,7 @@ function appendCharacter(char) {
     if (currentExpression === '0' && char !== '.') {
         currentExpression = char;
     } else {
-        // Handle special cases for 'pi', 'sin(', 'cos(', 'tan(', 'sqrt(', 'pow('
-        if (char === 'pi') {
-            currentExpression += 'pi';
-        } else if (char === 'sin(' || char === 'cos(' || char === 'tan(' || char === 'sqrt(' || char === 'pow(') {
-            currentExpression += char;
-        } else {
-            currentExpression += char;
-        }
+        currentExpression += char;
     }
     display.innerText = currentExpression;
 }
@@ -39,17 +32,19 @@ async function calculate() {
                 'Content-Type': 'application/json',
                 'X-CSRFToken': csrfToken
             },
-            body: JSON.stringify(currentExpression)
+            body: JSON.stringify({ expression: currentExpression }) // Send as JSON object
         });
         const data = await response.json();
         if (data.result.toString().startsWith('Error')) {
             display.innerText = data.result;
             currentExpression = '0'; // Reset expression on error
-        } else {
+        }
+        else {
             currentExpression = data.result.toString();
             display.innerText = currentExpression;
         }
-    } catch (error) {
+    }
+    catch (error) {
         display.innerText = 'Error';
         currentExpression = '0'; // Reset expression on error
     }

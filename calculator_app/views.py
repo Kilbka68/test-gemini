@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from asteval import Interpreter
 import math
+import json # Import the json module
 
 # Create your views here.
 def calculator_view(request):
@@ -10,10 +11,11 @@ def calculator_view(request):
 def calculate_api(request):
     if request.method == 'POST':
         try:
-            data = request.FILES['data'].read().decode('utf-8')
-            expression = data
-        except KeyError:
-            expression = request.body.decode('utf-8')
+            # Correctly parse JSON from request body
+            data = json.loads(request.body)
+            expression = data.get('expression', '')
+        except json.JSONDecodeError:
+            return JsonResponse({'result': 'Error: Invalid JSON'}, status=400)
 
         # Initialize asteval interpreter
         aeval = Interpreter()
@@ -24,6 +26,7 @@ def calculate_api(request):
         aeval.symtable['sqrt'] = math.sqrt
         aeval.symtable['pi'] = math.pi
         aeval.symtable['pow'] = math.pow
+        aeval.symtable['abs'] = math.fabs # Add abs for completeness
 
         try:
             # Evaluate the expression
@@ -31,4 +34,4 @@ def calculate_api(request):
             return JsonResponse({'result': result})
         except Exception as e:
             return JsonResponse({'result': 'Error: ' + str(e)})
-    return JsonResponse({'result': 'Invalid request method.'})
+    return JsonResponse({'result': 'Error: Invalid request method.'}, status=405) # Return JSON for error

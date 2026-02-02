@@ -16,6 +16,11 @@
             <button class="btn btn-clear" onclick="clearDisplay()">C</button>
             <button class="btn btn-delete" onclick="deleteChar()"><-</button>
 
+            <button class="btn btn-func" onclick="appendCharacter('sin(')">sin</button>
+            <button class="btn btn-func" onclick="appendCharacter('cos(')">cos</button>
+            <button class="btn btn-func" onclick="appendCharacter('tan(')">tan</button>
+            <button class="btn btn-func" onclick="appendCharacter('sqrt(')">sqrt</button>
+
             <button class="btn" onclick="appendCharacter('7')">7</button>
             <button class="btn" onclick="appendCharacter('8')">8</button>
             <button class="btn" onclick="appendCharacter('9')">9</button>
@@ -31,16 +36,12 @@
             <button class="btn" onclick="appendCharacter('3')">3</button>
             <button class="btn btn-operator" onclick="appendCharacter('-')">-</button>
 
+            <button class="btn btn-func" onclick="appendCharacter('pi')">pi</button>
             <button class="btn" onclick="appendCharacter('0')">0</button>
             <button class="btn" onclick="appendCharacter('.')">.</button>
-            <button class="btn btn-equals" onclick="calculate()">=</button>
             <button class="btn btn-operator" onclick="appendCharacter('+')">+</button>
 
-            <button class="btn btn-func" onclick="appendCharacter('pi')">π</button>
-            <button class="btn btn-func" onclick="appendCharacter('sin(')">sin</button>
-            <button class="btn btn-func" onclick="appendCharacter('cos(')">cos</button>
-            <button class="btn btn-func" onclick="appendCharacter('tan(')">tan</button>
-            <button class="btn btn-func" onclick="appendCharacter('sqrt(')">√</button>
+            <button class="btn btn-equals" id="equals" style="grid-column: span 3;" onclick="calculate()">=</button>
             <button class="btn btn-func" onclick="appendCharacter('pow(')">pow</button>
         </div>
     </div>
